@@ -1,0 +1,28 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata: 
+  name: monit-deployment
+  namespace: monit
+  labels: 
+    app: monit
+spec: 
+  replicas: 2
+  selector: 
+    matchLabels: 
+      app: monit 
+  template: 
+    metadata:
+      name: monit
+      labels:
+        app: monit
+    spec: 
+      containers:
+      - name: monit
+        image: louislam/uptime-kuma:1
+        volumeMounts: 
+        - name: monit 
+          mountPath: /app/data 
+      volumes: 
+      - name: monit
+        persistentVolumeClaim:
+          claimName: monit

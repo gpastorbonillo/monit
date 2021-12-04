@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata: 
+  name: monit-web-service
+  namespace: monit
+  labels: 
+    app: monit
+spec: 
+  selector: 
+    app: monit
+  ports: 
+  - name: web-service
+    port: 3001
+    targetPort: 3001
